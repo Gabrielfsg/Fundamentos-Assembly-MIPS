@@ -76,3 +76,48 @@
 		syscall 
 	
 		
+.data
+
+	array:
+		.align 2
+		.space 16
+
+.text
+
+ 	li $s0, 0
+ 	li $t1, 0
+ 	li $t2, 0
+ 	
+ 	
+ 	loop:
+ 	
+ 		beq $s0, 16, mostra		
+ 		sw $t1, array($s0)
+ 		
+ 		addi $s0, $s0, 4
+ 		addi $t1, $t1, 1
+ 		
+ 		j loop
+ 	
+ 	mostra:
+ 	
+ 		beq $t2, 16, sair		
+
+ 		li $v0, 1
+  		lw $a0, array($t2)
+ 		syscall 
+ 		
+ 		addi $t2, $t2, 4
+ 		
+ 		j mostra
+ 				
+ 	
+ 	sair:
+ 	
+ 		li $v0,10
+ 		syscall 
+		
+		
+		
+	
+	  
